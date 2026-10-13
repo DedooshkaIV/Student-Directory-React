@@ -1,0 +1,12 @@
+body {
+    background-color: #FAF7F2;
+    font-family: 'Poppins', sans-serif;
+}
+
+.breadcrumb {
+    --bs-breadcrumb-divider: "/";
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    color: white;
+}

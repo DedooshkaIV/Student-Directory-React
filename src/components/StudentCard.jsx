@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useState } from "react";
 
 function StudentCard({ name, id, major, year, gpa, image }) {
@@ -58,6 +59,13 @@ function StudentCard({ name, id, major, year, gpa, image }) {
                             onClick={handleDelete}>
                         Delete
                     </button>
+
+                    <Link
+                        to={`/students/${id}`}
+                        className="btn btn-outline-primary btn-sm"
+                    >
+                        Open Student Profile
+                    </Link>
 
                 </div>
 

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 
 function Footer() {
     return (
@@ -8,27 +9,32 @@ function Footer() {
 
                     <div className="col-md-6 mb-3">
                         <h5>Quick Links</h5>
+
                         <ul className="list-unstyled">
                             <li>
-                                <a href="#" className="text-white-50 text-decoration-none">
+                                <Link to="/" className="text-white-50 text-decoration-none">
                                     Dashboard
-                                </a>
+                                </Link>
                             </li>
+
                             <li>
-                                <a href="#" className="text-white-50 text-decoration-none">
+                                <Link to="/students" className="text-white-50 text-decoration-none">
                                     Students
-                                </a>
+                                </Link>
                             </li>
+
                             <li>
-                                <a href="#" className="text-white-50 text-decoration-none">
+                                <Link to="/courses" className="text-white-50 text-decoration-none">
                                     Courses
-                                </a>
+                                </Link>
                             </li>
+
                             <li>
-                                <a href="#" className="text-white-50 text-decoration-none">
+                                <Link to="/reports" className="text-white-50 text-decoration-none">
                                     Reports
-                                </a>
+                                </Link>
                             </li>
+                            
                         </ul>
                     </div>
 

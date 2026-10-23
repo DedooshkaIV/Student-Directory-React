@@ -8,11 +8,7 @@ function StudentCard({ name, id, major, year, gpa, image }) {
     const [showDelete, setShowDelete] = useState(false);
 
     function handleViews() {
-        setViews(views + 1)
-    }
-
-    function handleDelete() {
-        setShowDelete(true);
+        setViews(views + 1);
     }
 
     return (
@@ -56,7 +52,7 @@ function StudentCard({ name, id, major, year, gpa, image }) {
                     </button>
 
                     <button className="btn btn-outline-danger btn-sm"
-                            onClick={handleDelete}>
+                            onClick={() => setShowDelete(true)}>
                         Delete
                     </button>
 

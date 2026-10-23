@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import Dashboard from './pages/Dashboard';
 import Students from './pages/Students';
 import StudentProfile from './pages/StudentProfile';
+import StudentRegistration from './pages/StudentRegistration';
 import Courses from './pages/Courses';
 import Reports from './pages/Reports';
 
@@ -29,6 +30,8 @@ function App() {
                         <Route path="/students" element={<Students />} />
 
                         <Route path="/students/:id" element={<StudentProfile />} />
+
+                        <Route path="/students/register" element={<StudentRegistration />} />
 
                         <Route path="/courses" element={<Courses />} />
 

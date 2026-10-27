@@ -6,6 +6,9 @@ function StudentForm() {
     name: '',
     email: '',
     phone: '',
+    password: '',
+    confirmPassword: '',
+    registrationDate: '',
     program: '',
     semester: '',
     gender: '',
@@ -36,13 +39,18 @@ function StudentForm() {
     setError('')
     setSuccess('')
 
-    if (!formData.name) {
+    if (!formData.name.trim()) {
       setError('Please enter your name.')
       return
     }
 
-    if (formData.name.length < 3) {
+    if (formData.name.trim().length < 3) {
       setError('Name must be at least 3 characters.')
+      return
+    }
+
+    if(!/^[A-Za-z ]+$/.test(formData.name.trim())){
+      setError('Name must contain letters and spaces only.')
       return
     }
 
@@ -51,8 +59,74 @@ function StudentForm() {
       return
     }
 
+    if (!/^[A-Za-z0-9._%+-]+@(gmail|yahoo|outlook)\.com$/i.test(formData.email.trim())) {
+      setError('Email must be from Gmail, Yahoo, or Outlook.')
+      return
+    }
+
     if (!formData.phone) {
       setError('Please enter your phone number.')
+      return
+    }
+
+
+    if (!/^[0-9]{11}$/.test(formData.phone)) {
+      setError('Phone number must contain exactly 11 digits.')
+      return
+    }
+
+    if (!formData.password) {
+    setError('Please enter your password.')
+    return
+    }
+
+    if (formData.password.length < 8) {
+      setError('Password must contain at least 8 characters.')
+      return
+    }
+
+    if (!/[A-Z]/.test(formData.password)) {
+      setError('Password must contain an uppercase letter.')
+      return
+    }
+
+    if (!/[a-z]/.test(formData.password)) {
+      setError('Password must contain a lowercase letter.')
+      return
+    }
+
+    if (!/[0-9]/.test(formData.password)) {
+      setError('Password must contain a number.')
+      return
+    }
+
+    if (!/[^A-Za-z0-9\s]/.test(formData.password)) {
+      setError('Password must contain a special character.')
+      return
+    }
+
+    if (/\s/.test(formData.password)) {
+      setError('Password cannot contain spaces or whitespace.')
+      return
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      setError('Passwords do not match.')
+      return
+    }
+
+    if (!formData.registrationDate) {
+      setError('Please select a registration date.')
+      return
+    }
+
+    const today = new Date()
+    today.setHours(0, 0, 0, 0)
+
+    const selectedDate = new Date(formData.registrationDate + 'T00:00:00')
+
+    if (selectedDate < today) {
+      setError('Registration date cannot be in the past.')
       return
     }
 
@@ -71,7 +145,7 @@ function StudentForm() {
       return
     }
 
-    if (!formData.address) {
+    if (!formData.address.trim()) {
       setError('Please enter your address.')
       return
     }
@@ -82,7 +156,11 @@ function StudentForm() {
     }
 
     console.log('Student Information:')
-    console.log(formData)
+    console.log({
+    ...formData,
+    password: '[REDACTED]',
+    confirmPassword: '[REDACTED]'
+    })
 
     setSuccess('Student registered successfully!')
 
@@ -90,6 +168,9 @@ function StudentForm() {
       name: '',
       email: '',
       phone: '',
+      password: '',
+      confirmPassword: '',
+      registrationDate: '',
       program: '',
       semester: '',
       gender: '',
@@ -161,6 +242,62 @@ function StudentForm() {
               className="form-control"
               placeholder="Enter your phone number"
               value={formData.phone}
+              onChange={handleChange}
+            />
+
+          </div>
+
+          {/* Password */}
+
+          <div className="mb-3">
+
+            <label className="form-label">
+              Password
+            </label>
+
+            <input
+              type="password"
+              name="password"
+              className="form-control"
+              placeholder="Enter your password"
+              value={formData.password}
+              onChange={handleChange}
+            />
+
+          </div>
+
+          {/* Confirm Password */}
+
+          <div className="mb-3">
+
+            <label className="form-label">
+              Confirm Password
+            </label>
+
+            <input
+              type="password"
+              name="confirmPassword"
+              className="form-control"
+              placeholder="Confirm your password"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+            />
+
+          </div>
+
+          {/* Registration Date */}
+
+          <div className="mb-3">
+
+            <label className="form-label">
+              Registration Date
+            </label>
+
+            <input
+              type="date"
+              name="registrationDate"
+              className="form-control"
+              value={formData.registrationDate}
               onChange={handleChange}
             />
 
